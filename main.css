@@ -1,0 +1,62 @@
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: Sans-Serif;
+  /*font-size: 1.2rem;*/
+  color: white;
+  background-color: #4684ff;
+  padding: 0;
+  margin: 0;
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+p {
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  max-width: 42rem;
+  min-height: 38rem;
+  padding: 1em;
+  margin: 1em auto;
+}
+
+.search label,
+.search input,
+.search button {
+  display: block;
+  width: 100%;
+  padding: .2em .5em;
+  margin: .25em 0;
+}
+
+.search label {
+  padding: 0;
+}
+
+.search button {
+  color: inherit;
+  background-color: inherit;
+  border: 3px solid white;
+  margin-top: .75em;
+}
+
+/* We're setting our own focus outline here
+ because we want to be sure it is visible against
+ our blue background. */
+.user a:hover,
+.user a:focus,
+.search input:focus,
+.search button:focus {
+  outline: 5px dotted salmon;
+}

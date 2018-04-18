@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>AJAX & ARIA Live</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" rel="stylesheet"/>
+    <link href="main.css" rel="stylesheet"/>
+    
+  </head>
+  <body>
+      <div class="container">
+        <form action="#" name="youtube-search" class="search">
+          <label for="search-username">Enter a YouTube search: </label>
+          <input type="text" name="search" id="search-username" required/>
+          <button type="submit">Look up</button>
+        </form>
+        
+        <!-- aria-live tells the screen reader to watch this part of the DOM
+        for changes. We add `hidden` so that users won't be confused 
+        by the presence of an empty element.-->
+        <main role="main" class="js-output" aria-live="assertive" hidden>
+          <!--our results will go here!-->
+        </main>
+      </div>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+    
+  </body>
+</html>
