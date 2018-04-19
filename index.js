@@ -1,4 +1,4 @@
-'use strict';
+e strict';
 
 const YOUTUBE_SEARCH_ENDPOINT = 'https://www.googleapis.com/youtube/v3/search';
 
@@ -34,28 +34,29 @@ function fetchYTData(baseURL, query) {
   // make the complete url by concatenating
   // the endpoint and username together
 //https://www.googleapis.com/youtube/v3/search?q=surfing&maxResults=2&key=AIzaSyAKFCsbsJ-lR3nhd4OMAyGh2YOO2KVtAC0&part=snippet
-  let queryconcat = baseURL+"?q="+query+"&maxResults=2&key=AIzaSyAKFCsbsJ-lR3nhd4OMAyGh2YOO2KVtAC0&part=snippet";
+  const queryconcat = baseURL+"?q="+query+"&maxResults=5&key=AIzaSyAKFCsbsJ-lR3nhd4OMAyGh2YOO2KVtAC0&part=snippet";
   // try to get some JSON
   console.log(queryconcat);
   // and show something to the user.
   
-  $.getJSON(queryconcat, resultData)
+  $.getJSON(queryconcat, renderData)
   // ... and show an error if we can't.
     .fail(showErr);
 }
 
+function renderData(data){
+  const results = data.items.map((item, index) => showResults(item));
+}
 
 function showResults(resultData) {
   // store the element we'll be appending to
-  console.log(resultData);
+  console.log("!!!!!!");
 
   const outputElem = $('.js-output');
   
-  
   // Store the parts we want from data
   // using object destructuring
-  let id = resultData.id;
-  let videoId = id.videoId;
+  let videoId = resultData.id.videoId;
   let title = resultData.snippet.title;
   let thumbnail = resultData.snippet.thumbnails.medium.url;
   
@@ -65,18 +66,22 @@ function showResults(resultData) {
   
   // We'll use the variables above to present
   // the information we got from youtube.
-  const queryInfoHTML = (
+  let queryInfoHTML = "";
+  queryInfoHTML += (
     `<div>
       <a class="js-result-name" href="https://www.youtube.com/watch?v=${videoId}" target="_blank" target="_blank"><img src="${thumbnail}"></a>
       <h2><a href="https://www.youtube.com/watch?v=${videoId}" target="_blank">${title}</a></h2>
     </div>`
   );
   
+  console.log(queryInfoHTML);
+  
   // then empty the output region
   // and append our profile info
-  outputElem
+  outputElem 
     .prop('hidden', false)
-    .html(queryInfoHTML);
+    .append(queryInfoHTML);
+
 }
 
 function showErr(err) {
